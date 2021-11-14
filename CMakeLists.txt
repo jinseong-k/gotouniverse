@@ -1,0 +1,13 @@
+CMAKE_MINIMUM_REQUIRED (VERSION 3.19)
+
+PROJECT ("GotoUnivers")
+
+ADD_DEFINITIONS("-Wall")
+
+INCLUDE_DIRECTORIES( ../libcommon/ )
+
+LINK_DIRECTORIES( ../libcommon/build )
+
+ADD_EXECUTABLE (test test.c)
+
+TARGET_LINK_LIBRARIES( ../libcommon/build/libcommon.a )
