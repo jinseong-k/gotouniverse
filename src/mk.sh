@@ -1,19 +1,33 @@
 #!/bin/zsh
 
+LIBCOMMON_BUILD_DIR="libcommon/build/"
+
 function clear_all() {
-  cd libcommon
-  rm -rf build
-  cd ..
-  rm -rf build
-  rm test
+  if [ -d ${LIBCOMMON_BUILD_DIR} ]; then
+    rm -rf ${LIBCOMMON_BUILD_DIR}
+  fi
+  
+  if [ -d build ]; then
+    rm -rf build
+  fi
+
+  if [ -e test ]; then
+    rm test
+  fi
 }
 
 function compile_all() {
+  if [ ! -d "libcommon/build/" ]; then
+    mkdir libcommon/build
+  fi
   cd libcommon/build
+  cmake ..
   make clean;make
   cd -
 
-  rm test
+  if [ -e "test" ]; then
+    rm test
+  fi
   gcc test.c -o test -Llibcommon/build -lcommon -I libcommon/
 }
 
