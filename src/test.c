@@ -1,29 +1,37 @@
 #include <stdio.h>
+#include <stdint.h>
 
 #include "libcommon.h"
 
 #define TEST_CNT 8
 
+typedef struct _TEST {
+  uint32_t a;
+  uint32_t b;
+} TEST;
+
 int stack_test() {
   JS_STACK_t *stack = NULL;
   int i;
-  int a = 10;
-  int result = 0;
+  TEST data;
+  TEST result;
   int count = TEST_CNT;
 
-  js_enable_debug();
-  stack = create_stack(sizeof(int), count);
+  stack = create_stack(sizeof(TEST), count);
   // Create Stack
 
   for (i=0; i<count+4; i++) {
-    a = i;
-    js_push(stack, &a);
+    data.a = i;
+    data.b = i+1;
+    js_push(stack, &data);
     // Push Datas
   }
 
   for (i=0; i<count+4; i++) {
-    js_pop(stack, (void *)&result);
-    // Pop Datas
+    if (STACK_OK == js_pop(stack, (void *)&result)) {
+      fprintf(stderr, "POP a : [%u] b : [%u]\n",
+          result.a, result.b);
+    }
   }
 
   destroy_stack(stack);
@@ -34,26 +42,31 @@ int stack_test() {
 
 int queue_test() {
   int i;
-  int data = 0;
+  TEST data;
+  TEST result;
   JS_QUEUE_t *queue = NULL;
   int count = TEST_CNT;
 
-  js_enable_debug();
-  queue = create_queue(sizeof(int), count);
+  queue = create_queue(sizeof(TEST), count);
 
   for (i=0; i<count+4; i++) {
-    data = i;
+    data.a = i;
+    data.b = i+3;
     js_enqueue(queue, (void *)&data);
   }
 
   for (i=0; i<count+4; i++) {
-    js_dequeue(queue, (void *)&data);
+    if (QUEUE_OK == js_dequeue(queue, (void *)&result)) {
+      fprintf(stderr, "DEQ a : [%u] b : [%u]\n",
+          result.a, result.b);
+    }
   }
 
   return 1;
 }
 
 int main() {
+  js_enable_debug();
 #if 0
   stack_test();  // Stack Library Test
 #else

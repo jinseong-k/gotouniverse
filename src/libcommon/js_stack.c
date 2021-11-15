@@ -49,7 +49,6 @@ uint32_t js_push(JS_STACK_t *stack, void *data) {
 
   stack->head+=stack->data_size;
   memcpy(stack->head, data, stack->data_size);
-  js_print_debug("[%s:%d] push data :[%d]\n", __func__, __LINE__, *((int *)data));
   stack->num_of_elements++;
 
   return STACK_OK;
@@ -65,7 +64,6 @@ uint32_t js_pop(JS_STACK_t *stack, void *data) {
   memcpy(data, stack->head, stack->data_size);
   stack->head-=stack->data_size;
   stack->num_of_elements--;
-  js_print_debug("[%s:%d] pop data :[%d]\n", __func__, __LINE__, *((int *)data));
 
   return STACK_OK;
 }

@@ -38,7 +38,6 @@ uint32_t js_enqueue(JS_QUEUE_t *queue, void *data) {
   memcpy(queue->head, data, queue->data_size);
   queue->num_of_elements++;
   queue->head_idx++;
-  js_print_debug("[%s:%d] Enq : [%d]\n", __func__, __LINE__, *((int*)queue->head));
 
   if (queue->head_idx >= queue->max_num) {
     queue->head_idx = 0;
@@ -59,7 +58,6 @@ uint32_t js_dequeue(JS_QUEUE_t *queue, void *data) {
   memcpy(data, queue->tail, queue->data_size);
   queue->num_of_elements--;
   queue->tail_idx++;
-  js_print_debug("[%s:%d] Deq : [%d]\n", __func__, __LINE__, *((int*)queue->tail));
 
   if (queue->tail_idx >= queue->max_num) {
     queue->tail_idx = 0;
