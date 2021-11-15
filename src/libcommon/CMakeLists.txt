@@ -7,4 +7,6 @@ ADD_DEFINITIONS("-Wall")
 INCLUDE_DIRECTORIES( ../libcommon/ )
 
 ADD_LIBRARY (common STATIC
-    js_stack.c js_debug.c)
+    js_stack.c
+    js_queue.c
+    js_debug.c)
