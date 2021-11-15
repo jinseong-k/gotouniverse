@@ -27,13 +27,13 @@ void destroy_stack(JS_STACK_t *stack) {
   }
 }
 
-uint32_t get_data_count(JS_STACK_t *stack) {
+uint32_t stack_elements(JS_STACK_t *stack) {
   if (stack) return stack->num_of_elements;
   return 0;
 }
 
 uint32_t check_data_count(JS_STACK_t *stack) {
-  if (get_data_count(stack) >= stack->max_num) return STACK_FAIL;
+  if (stack_elements(stack) >= stack->max_num) return STACK_FAIL;
   else return STACK_OK;
 }
 
@@ -43,6 +43,7 @@ uint32_t js_push(JS_STACK_t *stack, void *data) {
   }
 
   if (check_data_count(stack) == STACK_FAIL) {
+    js_print_debug("[%s:%d] Stack full\n", __func__, __LINE__);
     return STACK_FAIL;
   }
 
@@ -56,7 +57,10 @@ uint32_t js_push(JS_STACK_t *stack, void *data) {
 
 uint32_t js_pop(JS_STACK_t *stack, void *data) {
   if (stack == NULL) return STACK_FAIL;
-  if (stack->num_of_elements <= 0) return STACK_FAIL;
+  if (stack->num_of_elements <= 0) {
+    js_print_debug("[%s:%d] Stack empty\n", __func__, __LINE__);
+    return STACK_NONE;
+  }
 
   memcpy(data, stack->head, stack->data_size);
   stack->head-=stack->data_size;
