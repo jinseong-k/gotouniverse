@@ -1,5 +1,6 @@
 #ifndef __JS_QUEUE_HDR_
 #define __JS_QUEUE_HDR_
+#include <stdint.h>
 
 #define QUEUE_FAIL 0
 #define QUEUE_OK 1

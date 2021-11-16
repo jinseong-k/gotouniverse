@@ -29,6 +29,13 @@ JS_QUEUE_t *create_queue(uint32_t size, uint32_t num) {
   return queue;
 }
 
+void destroy_queue(JS_QUEUE_t *queue) {
+  if (queue) {
+    free(queue->data);
+    free(queue);
+  }
+}
+
 uint32_t js_enqueue(JS_QUEUE_t *queue, void *data) {
   if (check_cnt(queue) == QUEUE_FAIL) {
     js_print_debug("[%s:%d] Queue Full\n", __func__, __LINE__);
