@@ -8,8 +8,8 @@ Study more! Don't stop it.
 * Feature
   * Stack
   * Queue
-* Will be implemented
   * Linked List
+* Will be implemented
   * Hash table
   * Vector
 
