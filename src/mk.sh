@@ -28,7 +28,7 @@ function compile_all() {
   if [ -e "test" ]; then
     rm test
   fi
-  gcc test.c -o test -Wall -Llibcommon/build -lcommon -I libcommon/
+  gcc -g3 -o test test.c -Wall -Llibcommon/build -lcommon -I libcommon/
 }
 
 # main

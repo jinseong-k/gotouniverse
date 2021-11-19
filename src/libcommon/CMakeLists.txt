@@ -9,4 +9,5 @@ INCLUDE_DIRECTORIES( ../libcommon/ )
 ADD_LIBRARY (common STATIC
     js_stack.c
     js_queue.c
+    js_linked_list.c
     js_debug.c)
