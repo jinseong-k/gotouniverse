@@ -4,10 +4,8 @@ PROJECT ("GotoUnivers")
 
 ADD_DEFINITIONS("-Wall")
 
-INCLUDE_DIRECTORIES( ../libcommon/ )
+INCLUDE_DIRECTORIES( libcommon/ )
+LINK_DIRECTORIES( libcommon/build )
 
-LINK_DIRECTORIES( ../libcommon/build )
-
-ADD_EXECUTABLE (test test.c)
-
-TARGET_LINK_LIBRARIES( ../libcommon/build/libcommon.a )
+ADD_EXECUTABLE ( test test.c )
+TARGET_LINK_LIBRARIES( test common )

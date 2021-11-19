@@ -10,10 +10,6 @@ function clear_all() {
   if [ -d build ]; then
     rm -rf build
   fi
-
-  if [ -e test ]; then
-    rm test
-  fi
 }
 
 function compile_all() {
@@ -25,10 +21,13 @@ function compile_all() {
   make clean;make
   cd -
 
-  if [ -e "test" ]; then
-    rm test
+  if [ ! -d "build" ]; then
+    mkdir build
   fi
-  gcc -g3 -o test test.c -Wall -Llibcommon/build -lcommon -I libcommon/
+  cd build
+  cmake ..
+  make clean;make
+  cd -
 }
 
 # main
