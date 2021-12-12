@@ -9,8 +9,8 @@ Study more! Don't stop it.
   * Stack
   * Queue
   * Linked List
-* Will be implemented
   * Hash table
+* Will be implemented
   * Vector
 
 ---------------------------
