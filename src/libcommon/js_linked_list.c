@@ -94,6 +94,18 @@ uint32_t js_add_list(JS_LIST *list, void *data) {
   return list->add_func(list, data);
 }
 
+void *js_find_data(JS_LIST *list, void *data) {
+  JS_NODE *node;
+  node = list->head;
+  while(node) {
+    if (list->comp_func(node->data, data)) {
+      return node->data;
+    }
+    node = node->next;
+  }
+  return LIST_FAIL;
+}
+
 uint32_t js_remove_list(JS_LIST *list, void *data) {
   JS_NODE *node;
   JS_NODE *prev_node;

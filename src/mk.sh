@@ -30,9 +30,14 @@ function compile_all() {
   cd -
 }
 
+function post_process() {
+  cp build/test .
+}
+
 # main
 if [ "${1}" = "clear" ]; then
   clear_all
 else
   compile_all
+  post_process
 fi

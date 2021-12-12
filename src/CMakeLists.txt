@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED (VERSION 3.19)
 
 PROJECT ("GotoUnivers")
 
-ADD_DEFINITIONS("-Wall")
+ADD_DEFINITIONS("-g -O3 -Wall")
 
 INCLUDE_DIRECTORIES( libcommon/ )
 LINK_DIRECTORIES( libcommon/build )

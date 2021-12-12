@@ -27,6 +27,8 @@ uint32_t js_destroy_linked_list(JS_LIST *list);
 uint32_t js_add_list(JS_LIST *list, void *data);
 uint32_t js_remove_list(JS_LIST *list, void *data);
 uint32_t js_list_elements(JS_LIST *list);
+void *js_find_data(JS_LIST *list, void *data);
+void *js_get_data(JS_LIST *list, void *data);
 uint32_t js_apply(JS_LIST *list, uint32_t (*cb_func)(void *));
 
 #endif  // __JS_LINKED_LIST_HDR_
