@@ -1,7 +1,4 @@
-# GoToUniverse
-
-We must go Universe. So I must get more knowledge.
-Study more! Don't stop it.
+C Language Basic Data structure
 
 ---------------------------
 
@@ -10,8 +7,6 @@ Study more! Don't stop it.
   * Queue
   * Linked List
   * Hash table
-* Will be implemented
-  * Vector
 
 ---------------------------
 
