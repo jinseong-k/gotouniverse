@@ -12,4 +12,6 @@ ADD_LIBRARY (common STATIC
     js_linked_list.c
     js_hash_table.c
     xxhash.c
+    libcommon.c
+    version.c
     js_debug.c)

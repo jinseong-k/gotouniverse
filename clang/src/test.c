@@ -239,11 +239,7 @@ int hash_table_test() {
  * Main
  */
 int main() {
-  char src[512] = {0, };
-  uint32_t dst = 0;
-  dst = js_hash_func((uint8_t *)src, 512);
-  fprintf(stderr, "[%u]\n", dst);
-
+  js_print_version();
   js_enable_debug();
 #if 1
   stack_test();  // Stack Library Test
