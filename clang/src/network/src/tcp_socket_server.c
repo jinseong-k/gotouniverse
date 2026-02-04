@@ -44,6 +44,7 @@ void *send_proc(void *_sock) {
   sock = *(int *)(_sock);
 
   snprintf(buf, sizeof(buf), "Hello Client");
+  data = buf;
   len = strlen(buf);
   while (1) {
     while ( len > 0 && (s = send(sock, data, len, 0)) > 0) {

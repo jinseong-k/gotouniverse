@@ -10,8 +10,8 @@ JS_STACK_t *create_stack(uint32_t data_size, uint32_t max_cnt) {
   stack = (JS_STACK_t *)malloc(sizeof(JS_STACK_t));
   memset(stack, 0x00, sizeof(JS_STACK_t));
 
-  stack->data = (void *)malloc(data_size * max_cnt);
-  stack->head = &stack->data[0];
+  stack->data = malloc(data_size * max_cnt);
+  stack->head = stack->data;
   stack->max_num = max_cnt;
   stack->data_size = data_size;
 
@@ -47,7 +47,7 @@ uint32_t js_push(JS_STACK_t *stack, void *data) {
     return STACK_FAIL;
   }
 
-  stack->head+=stack->data_size;
+  stack->head = (char *)stack->head + stack->data_size;
   memcpy(stack->head, data, stack->data_size);
   stack->num_of_elements++;
 
@@ -62,7 +62,7 @@ uint32_t js_pop(JS_STACK_t *stack, void *data) {
   }
 
   memcpy(data, stack->head, stack->data_size);
-  stack->head-=stack->data_size;
+  stack->head = (char *)stack->head - stack->data_size;
   stack->num_of_elements--;
 
   return STACK_OK;

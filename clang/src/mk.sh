@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 LIBCOMMON_BUILD_DIR="libcommon/build/"
 

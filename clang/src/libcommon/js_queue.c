@@ -22,9 +22,9 @@ JS_QUEUE_t *create_queue(uint32_t size, uint32_t num) {
   queue->max_num = num;
   queue->data_size = size;
   queue->data = malloc(size * num);
-  memset(queue->data, 0x00, size*num);
-  queue->head = &queue->data[0];
-  queue->tail = &queue->data[0];
+  memset(queue->data, 0x00, size * num);
+  queue->head = queue->data;
+  queue->tail = queue->data;
 
   return queue;
 }
@@ -48,9 +48,9 @@ uint32_t js_enqueue(JS_QUEUE_t *queue, void *data) {
 
   if (queue->head_idx >= queue->max_num) {
     queue->head_idx = 0;
-    queue->head = &queue->data[0];
+    queue->head = queue->data;
   } else {
-    queue->head += queue->data_size;
+    queue->head = (char *)queue->head + queue->data_size;
   }
 
   return QUEUE_OK;
@@ -68,9 +68,9 @@ uint32_t js_dequeue(JS_QUEUE_t *queue, void *data) {
 
   if (queue->tail_idx >= queue->max_num) {
     queue->tail_idx = 0;
-    queue->tail = &queue->data[0];
+    queue->tail = queue->data;
   } else {
-    queue->tail += queue->data_size;
+    queue->tail = (char *)queue->tail + queue->data_size;
   }
 
   return QUEUE_OK;
